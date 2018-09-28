@@ -5,4 +5,8 @@ module ApplicationHelper
     title.empty? ? base : "#{title} | #{base}"
   end
 
+  def login_path?
+    request.path_info == '/users/sign_in'
+  end
+
 end

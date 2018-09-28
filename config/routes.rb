@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    passwords: 'users/passwords'
+    sessions: 'users/sessions'
   }
+
+  root to: 'static_pages#home'
 
 end
