@@ -13,6 +13,7 @@ class UploadInspectInformationsController < ApplicationController
     unless @store_file.errors.size == 1
       return render 'upload'
     end
+    time = Time.now
 
     @store_file.user = current_user
 
@@ -25,7 +26,7 @@ class UploadInspectInformationsController < ApplicationController
 
     # 生成输出文件的文件名
     output_file_org = FileName.to_xml(loader.cache_path)
-    output_file     = FileName.with_date(output_file_org)
+    output_file     = FileName.with_date(output_file_org, time)
 
     # 开始用aio分析上传的文件
     real_cache_path = FileName.real_path(loader.cache_path)
@@ -40,6 +41,15 @@ class UploadInspectInformationsController < ApplicationController
     FileUtils.mv(output_file, real_store_path_xml)
 
     # 保存到数据库
+    # 版本按照时间来确定
+    @store_file.version = time.to_i
+    @store_file.inspect_time = inspect_time.join('-')
+    @store_file.client = upload_params[:client]
+    @store_file.locate = upload_params[:locate]
+    @store_file.path = FileName.real_path(loader.store_path)
+    @store_file.parser_path = real_store_path_xml
+    
+    @store_file.save
   end
 
   private

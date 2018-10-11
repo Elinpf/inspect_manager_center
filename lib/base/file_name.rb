@@ -1,13 +1,13 @@
 class FileName
   class << self
-    def with_date(file, year=nil, month=nil, day=nil)
-      if year.nil?
-        time  = Time.now
-        year  = time.year
-        month = time.month
-        day   = time.day
-        sec   = time.to_i
-      end
+    def with_date(file, time=nil)
+      # 如果没有给时间，就自己加入时间
+      time  = Time.now if time.nil?
+
+      year  = time.year
+      month = time.month
+      day   = time.day
+      sec   = time.to_i
 
       # 将文件名中的后缀分离
       ext = File.extname(file)
