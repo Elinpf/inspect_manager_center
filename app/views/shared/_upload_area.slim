@@ -1,0 +1,11 @@
+div.upload_area
+
+  span
+    请上传巡检压缩文件
+
+  = form_tag('store_log', multipart: true, remote: true, id: 'upload_form') do
+    = file_field_tag :localfile
+    = submit_tag '上传'
+
+    div.test
+      p a

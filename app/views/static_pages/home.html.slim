@@ -1,21 +1,5 @@
-div.row#username
-  / 这里添加用户的名字
-  div.col-md-4.col-offset-2
-    = debugger
-    p = current_user.email
-
-div.container
-  aside.col-md-4
-    / 这里添加导航栏
-    p 导航
-
-    / 添加上传了多少资料
-    p 资料
-
-  div.center.col-md-8
+div.row#home
     / 文件上传按钮
-    p 文件
+    div.center
+      = link_to '上传', upload_path, class: 'btn btn-lg btn-success'
 
-    / 浏览资料按钮
-    p 资料
-    

@@ -19,6 +19,11 @@ gem 'activeadmin', '~> 1.3', '>= 1.3.1'
 gem 'devise'
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 
+# 日志
+# https://github.com/fluent/fluent-logger-ruby
+gem 'fluent-logger', '~> 0.7.2'
+# 文件操作
+gem 'fileutils', '~> 1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'

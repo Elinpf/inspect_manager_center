@@ -1,0 +1,48 @@
+body.login {
+  background: #e8e9ea;
+
+  #content-wrapper {
+    width: 600px;
+    margin: 70px auto;
+    
+    #active_login {
+      @include shadow;
+      background: #fff;
+      padding: 13px 30px;
+      border-radius: 4px;
+
+      /* Login Form */
+      fieldset {
+        form {
+          @include no-shadow;
+          background: none;
+          padding: 0;
+          li {
+            padding: 10px 0;
+          }
+
+          input[type=text], input[type=email], input[type=password] {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+
+  h2 {
+    @include section-header;
+    @include primary-gradient;
+    @include text-shadow(#000);
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    margin: -14px -32px 20px -32px;
+  }
+
+}
+
+body {
+  .main-body {
+    margin: 60px 30px;
+  }
+}

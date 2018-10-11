@@ -1,8 +1,15 @@
-div.navbar.navbar-fix-top
-  div.container
-    = link_to 'IMS', root_path, id: 'logo'
-  
-- if user_signed_in?
-  nav
-    ul.nav.navbar-nav.navbar-right
+header
+  div.site-title
+    h1 Inspect Manager Center
+
+    ul.header-item.tabs#tabs
+      li = link_to 'shfjdsla', '#'
+      li = link_to 'shfjdsla', '#'
+      li = link_to 'shfjdsla', '#'
+
+    
+    ul.header-item.tabs#utility_nav
+      li = link_to current_user.email, '#'
       li = link_to '注销', destroy_user_session_path, method: :delete
+  
+

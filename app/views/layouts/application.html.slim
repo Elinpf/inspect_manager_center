@@ -17,13 +17,16 @@ html
 
   - else
     body  
-      div.container
+      div.wrapper
         = render 'layouts/header'
 
         - flash.each do |msg_type, msg|
           = content_tag(:div, msg, class: "alert alert-#{msg_type}")
 
-        = yield
+
+        div.main-body
+          = yield
+
         = render 'layouts/footer'
 
         div.row

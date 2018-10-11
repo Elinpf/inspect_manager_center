@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locate: MyString
+  inspect_time: 2018-10-08
+  path: MyString
+  version: 1
+
+two:
+  locate: MyString
+  inspect_time: 2018-10-08
+  path: MyString
+  version: 1

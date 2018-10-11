@@ -1,0 +1,62 @@
+form {
+  /* reset margin and padding */
+  ul, ol, li, fieldset, legend, input, textarea, select, p {
+    margin: 0;
+    padding: 0;
+  }
+  ol, ul { list-style: none; }
+
+  fieldset {
+    border: 0;
+    padding: 10px 0;
+    margin-bottom: 20px;
+
+    &.inputs { @include section-background; }
+
+    ol > li {
+      padding: 10px;
+      label {
+        display: block;
+        width: 20%;
+        float: left;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $form-label-color;
+        margin-top: 8px;
+
+        &.boolean {
+          width: 80%;
+          padding-left: calc(20% + 20px);
+          padding-right: 10px;
+          text-transform: none !important;
+          font-weight: normal;
+
+          input { margin: 0 10px 0 3px; }
+        }
+      }
+    }
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  textarea {
+    width: calc(80% - #{$text-input-total-padding});
+    border: $border-width solid #c9d0d6;
+    @include rounded;
+    font-size: 0.95em;
+    @include sans-family;
+    outline: none;
+    padding: 8px $text-input-horizontal-padding 7px;
+    height: calc(100% - 8px - 7px);
+
+    &:focus {
+      border: $border-width solid #99a2aa;
+      @include shadow(0,0,4px,#99a2aa);
+    }
+  }
+
+  input[type=submit], input[type=button], button {
+    @include dark-button;
+  }
+}

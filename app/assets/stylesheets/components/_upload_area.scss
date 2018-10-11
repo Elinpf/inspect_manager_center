@@ -1,0 +1,17 @@
+.upload_area {
+	padding: 30px 40px;
+	margin-left: 30%;
+	margin-right: 30%;
+	text-align: center;
+	border: dashed 2px $upload-area-border;
+  @include rounded(10px);
+  //background-image: image-url('function_progress_img1.png')
+  cursor: pointer;
+
+  span {
+    font-size: 1em;
+    font-weight: bold;
+    color: $upload-area-font;
+    text-decoration: none;
+  }
+}

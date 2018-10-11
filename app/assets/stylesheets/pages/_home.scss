@@ -1,0 +1,12 @@
+#home {
+
+  .center {
+    margin-left: 50%;
+
+    .btn {
+      width: 200px;
+      @include rounded(20px);
+    }
+  }
+  
+}

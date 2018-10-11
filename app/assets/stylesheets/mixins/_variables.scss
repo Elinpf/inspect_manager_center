@@ -1,3 +1,18 @@
 //Colors
 $body-background-color: #FFF !default;
 $primary-color: #5E6469 !default;
+$section-header-text-color: $primary-color !default;
+$form-label-color: $section-header-text-color !default;
+$page-header-text-color: #cdcdcd !default;
+$current-menu-item-background: lighten($primary-color, 12%) !default;
+$hover-menu-item-background: $current-menu-item-background !default;
+$upload-area-border: #c1c1c1;
+$upload-area-font: #757373b3;
+
+
+// Sizes
+$border-width: 1px !default;
+$text-input-horizontal-padding: 10px !default;
+$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
+$text-input-height: 18px !default;
+$horizontal-page-margin: 30px !default;

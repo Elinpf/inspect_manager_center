@@ -1,0 +1,18 @@
+@mixin section-header {
+  border: solid 1px #cdcdcd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset;
+
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 18px;
+  margin-bottom: 0.5em;
+  color: $section-header-text-color;
+
+  padding: 5px 10px 3px 10px;
+}
+
+@mixin section-background {
+  background: #f4f4f4;
+  @include rounded(4px);
+  @include inset-shadow(0,1px,4px, #ddd);
+}
