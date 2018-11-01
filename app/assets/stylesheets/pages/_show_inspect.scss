@@ -1,0 +1,15 @@
+#show-inspect {
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  tr > td > ul {
+    @include none-style-list;
+    @include border-list
+  }
+
+  .list-group {
+    @include none-style-list;
+  }
+}

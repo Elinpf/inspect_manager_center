@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181011020841) do
+ActiveRecord::Schema.define(version: 20181022024956) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(version: 20181011020841) do
     t.datetime "updated_at", null: false
     t.string "client"
     t.string "parser_path"
+    t.string "slug"
+    t.string "title"
+    t.boolean "recently", default: true
+    t.integer "devices_number"
+    t.index ["slug"], name: "index_store_files_on_slug", unique: true
     t.index ["user_id"], name: "index_store_files_on_user_id"
   end
 

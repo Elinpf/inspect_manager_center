@@ -1,0 +1,13 @@
+.table {
+  tr > td,th {
+    border: 1px solid $light-gray;
+  }
+}
+
+.th-down {
+  width: 10px;
+}
+
+.th-status {
+  width: 50px;
+}

@@ -5,6 +5,17 @@ form {
     padding: 0;
   }
   ol, ul { list-style: none; }
+  abbr { display: none; } 
+
+  label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  input {
+    display: inline;
+    width: 600px;
+  }
 
   fieldset {
     border: 0;

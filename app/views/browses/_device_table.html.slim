@@ -1,0 +1,46 @@
+fieldset
+  table.table.table-striped.table-hover
+    tr
+      th.th-down #{" "}
+      th.th-status 状态
+      th 设备名称
+      th 设备型号
+
+    - @device_manager.each_devices do |name, klass|
+      tr 
+        td
+          a data-toggle='collapse' href='##{name}'
+            span.glyphicon.glyphicon-collapse-down
+
+        / 判断故障性质
+        - ws = @device_manager.warning_summarize
+        - if ws.has_serious?
+          td 严重
+        - elsif ws.has_ordinary?
+          td 中度
+        - else
+          td 正常
+
+        td #{name}
+        td #{klass.device_type.upcase}
+
+      tr.panel-collapse.collapse id="#{name}"
+        td 
+        td colspan='3'
+          ul 
+            li
+              label Version
+              span<> #{klass.ios_version}
+
+            li
+              label run time
+              span<> #{klass.uptime}
+
+            li
+              label CPU(%)
+              span<> #{klass.cpu_percent.to_s + "%"}
+
+            li
+              label MEMORY(%)
+              span<> #{klass.memory_percent.to_s + "%"}
+

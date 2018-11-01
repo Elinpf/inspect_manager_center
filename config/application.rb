@@ -12,6 +12,7 @@ module InspectManagerCenter
     config.load_defaults 5.1
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
+    # 默认加载位置
     config.autoload_paths << Rails.root.join('lib/base')
 
     # Settings in config/environments/* take precedence over those specified here.

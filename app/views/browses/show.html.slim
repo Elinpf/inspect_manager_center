@@ -1,0 +1,14 @@
+- title = "#{@sf.client} #{@sf.locate} #{@sf.inspect_time} 巡检"
+- provide(:title, title)
+
+div#show-inspect
+
+  h1 #{title}
+
+  div.row
+
+    div.col-md-3
+      = render 'total_info'
+
+    div.col-md-9
+      = render 'device_table'

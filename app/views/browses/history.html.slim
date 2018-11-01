@@ -1,0 +1,21 @@
+- provide(:title, '历史版本')
+
+- title = "#{@sf.client} #{@sf.locate} #{@sf.inspect_time}"
+
+h1 = title
+
+div.row
+  div.col-md-8.col-md-offset-2
+    table.table.table-striped.table-hover
+      tr
+        th.th-status 版本
+        th 台数
+        th 操作
+
+      - @history_arr.each_with_index do |sf, n|
+
+        tr
+          td = n + 1
+          td = sf.devices_number
+          td = link_to '查看', browse_path(sf)
+

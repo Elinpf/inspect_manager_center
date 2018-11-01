@@ -14,7 +14,7 @@ ActiveAdmin.register AdminUser do
   filter :email
   filter :current_sign_in_at
   filter :sign_in_count
-  filter :created_at
+  filter :created_at, label: '创建时间'
 
   form do |f|
     f.inputs do

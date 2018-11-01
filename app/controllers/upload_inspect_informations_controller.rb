@@ -32,6 +32,12 @@ class UploadInspectInformationsController < ApplicationController
     real_cache_path = FileName.real_path(loader.cache_path)
     aio_device_manager = aio_parser_console_to_xml(real_cache_path, output_file)
 
+    aio_devices_number = aio_device_manager.devices_number
+    unless aio_devices_number > 0
+      flash.now[:danger] = '无效的巡检文件'
+      return render 'upload'
+    end
+
     # 分析完成后，将文件放入正式目录中
     loader.store!
 
@@ -48,10 +54,19 @@ class UploadInspectInformationsController < ApplicationController
     @store_file.locate = upload_params[:locate]
     @store_file.path = FileName.real_path(loader.store_path)
     @store_file.parser_path = real_store_path_xml
-    
-    @store_file.save
-  end
+    @store_file.devices_number = aio_devices_number
 
+    if @store_file.save
+
+      # 转到browses#show 
+      redirect_to browse_path(@store_file)
+
+    else
+      flash.now[:danger] = '上传出现问题'
+      render 'upload'
+    end
+  end
+ 
   private
 
   # 设置保存路径的信息

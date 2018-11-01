@@ -6,6 +6,11 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # 参考: https://blog.csdn.net/yy1300326388/article/details/43269493
+  # 解决Token问题
+  # Disable request forgery protection in development environment
+  #config.action_controller.allow_forgery_protection = false
+
   # Do not eager load code on boot.
   config.eager_load = false
 

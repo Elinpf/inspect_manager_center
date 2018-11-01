@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'browses/show'
+
   get 'upload_inspect_informations/upload'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,5 +15,16 @@ Rails.application.routes.draw do
 
   get  '/upload', to: 'upload_inspect_informations#upload'
   post '/upload', to: 'upload_inspect_informations#store_and_analysis'
+
+  resources :browses, only: [:show] do
+    collection do
+      get :index
+      post :compare
+    end
+
+    member do
+      get :history
+    end
+  end
 
 end

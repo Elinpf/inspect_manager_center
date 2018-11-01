@@ -1,0 +1,96 @@
+h1 Brower
+
+div.row
+  div.col-md-2
+    = render 'client_nav'
+
+  div.col-md-8
+    table.table.table-striped.table-hover
+      
+      tr
+        th.th-down #{' '}
+        th 客户
+        th 所在地
+        th 巡检时间
+        th 上传时间
+        th 操作
+
+      - @store_files.each do |sf|
+        - next unless sf.recently
+
+        tr
+          td 
+            input type='checkbox' name="client-#{sf.id}" value="client-#{sf.id}"
+          td = sf.client
+          td = sf.locate
+          td = sf.inspect_time
+          td = sf.created_at
+          td 
+            = link_to '转到', browse_path(sf)
+            = " / "
+            = link_to '历史', history_browse_path(sf)
+
+  div.col-md-2
+    input.btn.btn-lg.btn-success#compareBtn type='button' value='比较'
+
+javascript:
+  document.getElementById('compareBtn').onclick=function() {
+    var x = document.getElementsByTagName('input');
+    var boxes = new Array(2);
+    var index = 0;
+
+    for(var i=0; i < x.length; i++){
+      if (x[i].type == 'checkbox') {
+        if(x[i].checked){
+          boxes[index] = x[i];
+          index = index + 1;
+        }
+      }
+    }
+
+    // 发送post
+    doFormRequest('#{compare_browses_url}', 'post', {'key1':boxes[0].value, 'key2':boxes[1].value});
+  }
+
+
+javascript:
+  /*
+  * @url: url link
+  * @action: "get", "post"
+  * @json: {'key1':'value2', 'key2':'value2'}
+  */
+  function doFormRequest(url, action, json)
+  {
+      var form = document.createElement("form");
+      form.action = url;
+      form.method = action;
+      // append input attribute and valus
+      for (var key in json)
+      {
+        if (json.hasOwnProperty(key))
+        {
+          var val = json[key];
+          input = document.createElement("input");
+          input.type = "hidden";
+          input.name = key;
+          input.value = val;
+          // append key-value to form
+          form.appendChild(input)
+        }
+      }
+      // send post request
+      document.body.appendChild(form);
+      form.submit();
+      // remove form from document
+      document.body.removeChild(form);
+  }
+
+javascript:
+  $(document).ready(function() {
+  $('input[type=checkbox]').click(function(e) {
+    if ($("input[type='checkbox']:checked").length > 2) {
+      e.preventDefault();
+      alert("最多选择2个");
+   }
+  });
+ })

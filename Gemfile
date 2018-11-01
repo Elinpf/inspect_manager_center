@@ -24,6 +24,24 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 gem 'fluent-logger', '~> 0.7.2'
 # 文件操作
 gem 'fileutils', '~> 1.1'
+# pinyin
+gem 'chinese_pinyin'
+# zip解压
+gem 'zip_dir', '~> 0.1.5'
+# 分页
+gem 'will_paginate', ">=3.0.pre2"
+gem 'bootstrap-will_paginate'
+
+# babosa這個gem是讓我們做字元轉換的，支援中文網址
+# 例如：http://example.com/product/阿龍椅
+gem "babosa"
+
+# 获取文件尾部
+gem 'file-tail', '~> 1.2'
+
+
+### end mySelf ###
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'

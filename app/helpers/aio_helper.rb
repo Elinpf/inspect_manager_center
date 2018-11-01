@@ -2,6 +2,12 @@ module AioHelper
   # FIXME 修改此处require
   require '/root/lib/aio/lib/aio'
 
+  DefaultInputCompareXML          = 'input/style/compare_xml'
+  DefualtInputConsole             = 'input/style/console'
+  DefaultCompare                  = "special/style/compare"
+  DefaultCompareWithDeviceManager = "special/style/compare_with_device_manager"
+
+
   def aio_init
     @module_manager = Aio::ModuleManager.new
     module_loader = Aio::Module::Loader.new(@module_manager)
@@ -24,7 +30,10 @@ module AioHelper
   end
 
   def aio_input_parse(input_file)
-    @aio_input_klass.input_file = input_file
+    # 判断是否为压缩文件，并返回文件
+    unzip = MyZip.new(input_file).unzip
+
+    @aio_input_klass.input_file = unzip.unzipped_path
     @parser.input_klass = @aio_input_klass
     @aio_input_klass.ext_info = {cmds_reg: @device_manager.just_cmds_reg}
 
@@ -41,9 +50,9 @@ module AioHelper
     return @aio_output_klass.output_file
   end
 
-  def aio_parse(input_file, output_file)
+  def aio_parse(input_file, output_file=nil)
     aio_input_parse(input_file)
-    aio_output_parse(output_file) # FIXME 修改成temp下随机名称文件
+    aio_output_parse(output_file) unless output_file.nil?
     @device_manager
   end
 
@@ -77,4 +86,38 @@ module AioHelper
     aio_output_module('output/style/compare_xml')
     aio_parse(input_file, output_file)
   end
+
+  #  检验生成的xml是否完整
+  def check_xml(file)
+    line = MyFile.last_line(file)
+    line[0] == ' '
+  end
+
+  # 解析xml文件，返回device_manager
+  # 暂时还不能用，需要修改aio文件的parser.rb
+  def aio_parse_xml(xml_f, real_f)
+    return unless check_xml(xml_f)
+    
+    aio_init
+    aio_input_module(DefaultInputCompareXML)
+    aio_parse(xml_f)
+  end
+
+  # 分析console类型的文件，返回device_manager
+  def aio_parse_console(file)
+    aio_init
+    aio_input_module(DefualtInputConsole)
+    aio_parse(file)
+  end
+
+  def aio_parse_compare(file_one, file_two)
+    other_device_manager = aio_parse_console(file_one)
+    aio_parse_console(file_two)
+
+    compare_klass = @module_manager.get_module_klass_by_name(DefaultCompareWithDeviceManager)
+
+    @parser.parse_by_compare_with_device_manager(compare_klass, other_device_manager)
+    @device_manager
+  end
+
 end

@@ -1,0 +1,20 @@
+@mixin base-list {
+  padding: 20px 10px;
+  line-height: 25px;
+  float: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+@mixin border-list {
+  border: 1px solid $light-gray;
+  list-style: none;
+}
+
+@mixin none-style-list {
+  @include base-list;
+
+  span::before {
+    content: ' : ';
+  }
+}
