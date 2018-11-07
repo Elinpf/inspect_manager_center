@@ -19,11 +19,30 @@ body.login {
           padding: 0;
           li {
             padding: 10px 0;
+
+            label {
+              padding-left: 20%;
+            }
           }
 
           input[type=text], input[type=email], input[type=password] {
             width: 70%;
           }
+
+        }
+
+        #user_remember_me {
+          width: 20px;
+          margin-top: 4px;
+          //padding-left: 30px;
+        }
+
+        label.checkbox {
+          padding-left: 20%;
+        }
+
+        #login-submit {
+          width: 100%;
         }
       }
     }
