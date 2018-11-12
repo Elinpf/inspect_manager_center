@@ -1,5 +1,17 @@
 - provide(:title, '比较')
 
 - @device_manager.each_devices do |name, klass|
-  p #{name}
-  p #{klass.warning_klass.warning_info}
+  fieldset.compare
+    div
+      p #{name}
+      - klass.warning_info_compare.each_cmd_diff do |cmd, diff|
+        p #{cmd}
+
+        / 获取本命令的差异值
+        - vars = diff.vars_array
+
+        fieldset
+          div
+            - content = diff.content
+            - lines   = diff.lines
+

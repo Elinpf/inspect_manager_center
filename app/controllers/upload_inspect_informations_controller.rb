@@ -2,7 +2,13 @@ class UploadInspectInformationsController < ApplicationController
 
   def upload
     @store_file = StoreFile.new
-    console
+
+    # 以 [[name, id],[name, id] 的形式传入 simple_form
+    clients = Client.all
+    @name_and_klass = []
+    clients.each do |klass|
+      @name_and_klass << ["#{klass.name} #{klass.city.name}", klass.id]
+    end
   end
 
   def store_and_analysis
@@ -50,8 +56,7 @@ class UploadInspectInformationsController < ApplicationController
     # 版本按照时间来确定
     @store_file.version = time.to_i
     @store_file.inspect_time = inspect_time.join('-')
-    @store_file.client = upload_params[:client]
-    @store_file.locate = upload_params[:locate]
+    @store_file.client_id = upload_params[:client_id]
     @store_file.path = FileName.real_path(loader.store_path)
     @store_file.parser_path = real_store_path_xml
     @store_file.devices_number = aio_devices_number
@@ -72,8 +77,7 @@ class UploadInspectInformationsController < ApplicationController
   # 设置保存路径的信息
   def set_path_info
     path_info = {}
-    path_info[:client] = upload_params[:client]
-    path_info[:locate] = upload_params[:locate]
+    path_info[:client_id] = upload_params[:client_id]
     path_info[:inspect_time] = inspect_time.join('-')
 
     # 还可以在路径中加入工程师的名字
@@ -92,6 +96,6 @@ class UploadInspectInformationsController < ApplicationController
   end
 
   def upload_params
-    params.require(:store_file).permit(:client, :inspect_time, :path, :locate)
+    params.require(:store_file).permit(:client_id, :inspect_time, :path)
   end
 end

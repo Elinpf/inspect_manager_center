@@ -21,7 +21,7 @@ ActiveAdmin.register StoreFile do
   index do 
     selectable_column
     column '客户', :client
-    column '地市', :locate
+    column('地市', :name) { |payment| payment.client.city.name }
     column '巡检时间', :inspect_time
     column '巡检人员', :user
     column '设备数量', :devices_number

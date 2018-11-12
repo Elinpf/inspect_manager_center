@@ -3,8 +3,9 @@ div#upload-inspect-informations
   = simple_form_for(@store_file, url: upload_path) do |f|
     fieldset
       ul
-        li = f.input :client, label: '巡检单位'
-        li = f.input :locate, label: '巡检地点'
+        /li = f.input :client, label: '巡检单位'
+        /li = f.input :locate, label: '巡检地点'
+        li = f.input :client_id, collection: @name_and_klass, label_method: :first, value_method: :second
         li = f.input :inspect_time, label: '巡检时间'
         li = f.input :path, label: '巡检文件压缩格式', as: :file, error: '请选择文件'
 

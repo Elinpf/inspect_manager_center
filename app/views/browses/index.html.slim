@@ -1,4 +1,5 @@
-h1 Brower
+- provide(:title, '地市巡检记录')
+h1 地市巡检记录
 
 div.row
   div.col-md-2
@@ -21,8 +22,8 @@ div.row
         tr
           td 
             input type='checkbox' name="client-#{sf.id}" value="client-#{sf.id}"
-          td = sf.client
-          td = sf.locate
+          td = sf.client.name
+          td = sf.client.city.name
           td = sf.inspect_time
           td = sf.created_at
           td 

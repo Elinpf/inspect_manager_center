@@ -5,6 +5,7 @@ class BrowsesController < ApplicationController
   skip_before_action :verify_authenticity_token  
 
   def show
+    return redirect_to browses_path if params[:id] == 'compare'
     @sf = StoreFile.find(params[:id])
     
     @device_manager = aio_parse_console(@sf.path)
