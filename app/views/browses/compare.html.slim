@@ -4,14 +4,25 @@
   fieldset.compare
     div
       p #{name}
-      - klass.warning_info_compare.each_cmd_diff do |cmd, diff|
+      - klass.warning_info_compare.each_cmd_with_diff do |cmd, diff|
         p #{cmd}
 
         / 获取本命令的差异值
-        - vars = diff.vars_array
+        table
+          colgroup
+            col width='40'
+            col
+            col width='40'
+            col
 
-        fieldset
-          div
-            - content = diff.content
-            - lines   = diff.lines
+            - aio_print(diff).each do |text|
+              - cm1 = text.first
+              - cm2 = text.last
+
+              tr
+                td [ class="#{cm1.type.to_s + '_style_con'} blob-num" ] = cm1.old_number
+                td [ class="#{cm1.type.to_s + '_style'}" ] = cm1.text
+                td [ class="#{cm2.type.to_s + '_style_con'} blob-num" ] = cm2.new_number
+                td [ class="#{cm2.type.to_s + '_style'}" ] = cm2.text
+
 

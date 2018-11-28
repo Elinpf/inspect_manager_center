@@ -32,4 +32,22 @@ class BrowsesController < ApplicationController
 
     @device_manager = aio_parse_compare(sf_one.path, sf_two.path)
   end
+
+  def download_excel
+    @sf = StoreFile.find(params[:id])
+
+    # 生成excel临时文件
+    tmp_file = aio_parse_to_wps_excel(@sf.path, random_temp_path)
+    return if tmp_file.nil?
+    send_file(tmp_file, filename: "#{@sf.slug + '.xls'}")
+  end
+
+  def download_summary
+    @sf = StoreFile.find(params[:id])
+
+    # 生成summary临时文件
+    tmp_file = aio_parse_to_summary(@sf.path, random_temp_path)
+    return if tmp_file.nil?
+    send_file(tmp_file, filename: "#{@sf.slug + '.doc'}")
+  end
 end

@@ -1,0 +1,4 @@
+div.row
+  / LEARN button_to
+  = button_to '下载 Excel 巡检报告', action: 'download_excel', params: { id: @sf } 
+  = button_to '下载 Word 巡检简报', action: 'download_summary', params: { id: @sf }

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     collection do
       get :index
       post :compare
+      post :download_excel
+      post :download_summary
     end
 
     member do

@@ -4,6 +4,9 @@ module AioHelper
 
   DefaultInputCompareXML          = 'input/style/compare_xml'
   DefualtInputConsole             = 'input/style/console'
+  DefaultOutputCompareXML         = 'output/style/compare_xml'
+  DefaultOutputWPSExcel           = 'output/style/excel_table_wps'
+  DefaultOutputSummary            = 'output/style/summary_report'
   DefaultCompare                  = "special/style/compare"
   DefaultCompareWithDeviceManager = "special/style/compare_with_device_manager"
 
@@ -80,10 +83,10 @@ module AioHelper
     Aio::Ui::Logger.instance.info
   end
 
-  def aio_parser_console_to_xml(input_file, output_file)
+  def aio_parse_console_to_xml(input_file, output_file)
     aio_init
-    aio_input_module('input/style/console')
-    aio_output_module('output/style/compare_xml')
+    aio_input_module(DefualtInputConsole)
+    aio_output_module(DefaultOutputCompareXML)
     aio_parse(input_file, output_file)
   end
 
@@ -120,4 +123,44 @@ module AioHelper
     @device_manager
   end
 
+  def aio_myers(diff)
+    Aio::Base::Toolkit::Diff.diff(diff)
+  end
+
+  # 返回一个字符串数组
+  def aio_print(diff)
+    Printer.new.printer(aio_myers(diff))
+  end
+
+    
+  def aio_parse_to_wps_excel(input_file, output_file)
+    return unless windows?
+    aio_init
+    aio_input_module(DefaultInputConsole)
+    aio_output_module(DefaultOutputWPSExcel)
+    aio_input_parse(input_file)
+    aio_output_parse(output_file)
+  end
+    
+  def aio_parse_to_summary(input_file, output_file)
+    return unless windows?
+    aio_init
+    aio_input_module(DefaultInputConsole)
+    aio_output_module(DefaultOutputSummary)
+    aio_input_parse(input_file)
+    aio_output_parse(output_file)
+  end
+
+  def aio_parse_to_wps_excel_test(input_file, output_file)
+    aio_init
+    aio_input_module(DefualtInputConsole)
+    aio_output_module(DefaultOutputCompareXML)
+    aio_input_parse(input_file)
+    aio_output_parse(output_file)
+  end
+
+  # 随机生成文件名称
+  def random_temp_path
+    Rails.root.join('tmp', SecureRandom.alphanumeric)
+  end
 end

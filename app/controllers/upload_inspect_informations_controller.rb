@@ -36,7 +36,7 @@ class UploadInspectInformationsController < ApplicationController
 
     # 开始用aio分析上传的文件
     real_cache_path = FileName.real_path(loader.cache_path)
-    aio_device_manager = aio_parser_console_to_xml(real_cache_path, output_file)
+    aio_device_manager = aio_parse_console_to_xml(real_cache_path, output_file)
 
     aio_devices_number = aio_device_manager.devices_number
     unless aio_devices_number > 0
@@ -98,4 +98,6 @@ class UploadInspectInformationsController < ApplicationController
   def upload_params
     params.require(:store_file).permit(:client_id, :inspect_time, :path)
   end
+
+
 end

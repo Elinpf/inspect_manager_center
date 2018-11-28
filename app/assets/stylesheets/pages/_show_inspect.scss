@@ -12,4 +12,9 @@
   .list-group {
     @include none-style-list;
   }
+
+  input[type="submit"] {
+    width: 80%;
+    margin: 10px 25px;
+  }
 }

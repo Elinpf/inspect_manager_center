@@ -5,4 +5,35 @@ fieldset.compare {
     margin: 10px 10px;
     padding: 5px 5px;
   }
+
+  td {
+    line-height: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    vertical-align: top;
+
+    &.del_style_con {
+      background-color: #ffdce0;
+    }
+    &.del_style {
+      background-color: #ffeef0;
+    }
+
+    &.ins_style_con {
+      background-color: #cdffd8;
+    }
+
+    &.ins_style {
+      background-color: #e6ffed;
+    }
+
+    &.blob-num {
+      color: rgba(27,31,35,.3);
+      border-left: 1px solid #f6f8fa;
+      -moz-user-select: none;
+      -moz-user-select: none;
+    }
+  }
+
 }
